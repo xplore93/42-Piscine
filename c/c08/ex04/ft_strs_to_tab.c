@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strs_to_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 19:28:46 by estina            #+#    #+#             */
-/*   Updated: 2019/09/26 22:49:14 by estina           ###   ########.fr       */
+/*   Created: 2019/09/26 22:26:50 by estina            #+#    #+#             */
+/*   Updated: 2019/09/27 01:18:56 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_stock_str.h"
 #include <stdlib.h>
 
-int		ft_strlen(char *str)
+int					ft_strlen(char *str)
 {
 	int count;
 
@@ -22,7 +23,7 @@ int		ft_strlen(char *str)
 	return (count);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char				*ft_strcpy(char *dest, char *src)
 {
 	int i;
 
@@ -36,10 +37,32 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *src)
+char				*ft_strdup(char *src)
 {
-	char	*dst;
+	int		size;
+	char	*copy;
 
-	dst = malloc(ft_strlen(src) * sizeof(dst));
-	return (ft_strcpy(dst, src));
+	size = ft_strlen(src) + 1;
+	if ((copy = malloc(sizeof(char) * size)) == NULL)
+		return (NULL);
+	(void)ft_strcpy(copy, src);
+	return (copy);
+}
+
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
+{
+	struct s_stock_str	*aux;
+	int					i;
+
+	i = 0;
+	aux = malloc(sizeof(t_stock_str) * (ac + 1));
+	while (i < ac)
+	{
+		aux[i].size = ft_strlen(av[i]);
+		aux[i].str = ft_strdup(av[i]);
+		aux[i].copy = ft_strdup(av[i]);
+		i++;
+	}
+	aux[i].str = 0;
+	return (aux);
 }

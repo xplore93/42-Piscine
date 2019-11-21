@@ -1,45 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_abs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: estina <estina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 19:28:46 by estina            #+#    #+#             */
-/*   Updated: 2019/09/26 22:49:14 by estina           ###   ########.fr       */
+/*   Created: 2019/09/26 22:14:59 by estina            #+#    #+#             */
+/*   Updated: 2019/09/27 01:08:26 by estina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef FT_ABS_H
+# define FT_ABS_H
 
-int		ft_strlen(char *str)
-{
-	int count;
+# define ABS(x) ((x)<0 ? -(x) : (x))
 
-	count = 0;
-	while (str[count] != '\0')
-		count++;
-	return (count);
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = src[i];
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dst;
-
-	dst = malloc(ft_strlen(src) * sizeof(dst));
-	return (ft_strcpy(dst, src));
-}
+#endif
